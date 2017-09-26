@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_light"
+    tools:context="com.example.anchalgarg.somegame.MainActivity">
+
+    <GridView
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="350sp"
+        android:layout_alignEnd="@+id/movesLabel"
+        android:layout_alignLeft="@+id/button"
+        android:layout_alignRight="@+id/movesLabel"
+        android:layout_alignStart="@+id/button"
+        android:layout_below="@+id/textView"
+        android:background="@android:color/background_dark"
+        android:numColumns="5" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="62dp"
+        android:layout_marginRight="62dp"
+        android:layout_marginTop="12dp"
+        android:text="Number of Moves:" />
+
+    <TextView
+        android:id="@+id/movesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView"
+        android:layout_alignBottom="@+id/textView"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="26dp"
+        android:text="0" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
+        android:text="Refresh" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/movesLabel"
+        android:layout_toStartOf="@+id/movesLabel"
+        android:text="change level" />
+
+    <ImageButton
+        android:id="@+id/imageView6"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/gridView"
+        android:adjustViewBounds="true"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/blue_a" />
+
+    <ImageButton
+        android:id="@+id/imageView8"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_above="@+id/button"
+        android:layout_below="@+id/gridView"
+        android:layout_toEndOf="@+id/imageView6"
+        android:layout_toRightOf="@+id/imageView6"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/pinkish" />
+
+    <ImageButton
+        android:id="@+id/imageView9"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_below="@+id/gridView"
+        android:layout_toRightOf="@+id/imageView8"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/greencircle" />
+
+    <ImageButton
+        android:id="@+id/imageView10"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_below="@+id/gridView"
+        android:layout_toRightOf="@+id/imageView9"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/yellowcicle" />
+
+    <ImageButton
+        android:id="@+id/imageView12"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button2"
+        android:layout_below="@+id/gridView"
+        android:layout_toRightOf="@+id/imageView10"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/red_circle" />
+
+</RelativeLayout>
