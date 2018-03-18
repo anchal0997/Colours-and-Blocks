@@ -1,4 +1,4 @@
-package com.example.anchalgarg.somegame;
+package com.ex.anchalgarg.somegame;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

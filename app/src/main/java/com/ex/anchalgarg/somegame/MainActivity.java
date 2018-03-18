@@ -1,4 +1,4 @@
-package com.example.anchalgarg.somegame;
+package com.ex.anchalgarg.somegame;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +20,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
@@ -29,24 +27,30 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
    // ArrayList<Integer> arr=new ArrayList<>();
     HashMap<Integer,Integer> arr=new HashMap<>();
-    int present=-1;
+    int present=0;
     int nomoves=0;
     public static int x=0;
    // int first =0;
     int firstw;
+    boolean flag = false;
+    public static boolean flag2 = false;
     int cnt=0;
     GridView gridview ;
     int visited[]=new int[49];
     //int parent[]=new int[26];
     private Integer[] mThumbIds = {
-            R.drawable.bluesquare,R.drawable.green_sq,R.drawable.yellowsquare,R.drawable.pink,R.drawable.redsquare
+            R.drawable.bluesquare,R.drawable.green_sq,R.drawable.yellowsquare,R.drawable.pink_sq,R.drawable.redsquare
     };
 
 
     welcomeScreen mWelcome=new welcomeScreen();
-
+    WinningMessage frag = new WinningMessage();
+    FrameLayout fr ;
     FragmentManager mananger;
     FragmentTransaction trans;
+    Button mChangeLevel;
+    Button mRefresh;
+    Button mExit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,20 +65,42 @@ public class MainActivity extends AppCompatActivity {
         final TextView mTextView=(TextView)findViewById(R.id.movesLabel);
         ImageButton mImageBtn3=(ImageButton)findViewById(R.id.imageView10);
         ImageButton mImageBtn4=(ImageButton)findViewById(R.id.imageView12);
-        Button mChangeLevel=(Button)findViewById(R.id.button2);
+        mChangeLevel=(Button)findViewById(R.id.button2);
+        mExit=(Button)findViewById(R.id.Exit);
         gridview = (GridView) findViewById(R.id.gridView);
         mananger=getSupportFragmentManager();
+        fr = (FrameLayout) findViewById(R.id.fragment_container);
         //mRelLayout.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-
+        mWelcome.inst = MainActivity.this;
+        frag.p = MainActivity.this;
+        trans = mananger.beginTransaction();
+        trans.add(R.id.fragment_container, mWelcome);
+        trans.commit();
+        mRefresh = (Button)findViewById(R.id.button);
         //ft.add(frame.getId(),mWelcome.getTargetFragment());
             //ft.add(frame.getId(), mWelcome).commit();
-            //trans = mananger.beginTransaction();
-            //trans.show(mWelcome);
-            //trans.commit();
 
+        if(!flag) {
+            mChangeLevel.setVisibility(View.INVISIBLE);
+            mRefresh.setVisibility(View.INVISIBLE);
+            mExit.setVisibility(View.INVISIBLE);
+            fr.setVisibility(View.VISIBLE);
+        }
+        if(flag2){
+            mChangeLevel.setVisibility(View.VISIBLE);
+            mRefresh.setVisibility(View.VISIBLE);
+            mExit.setVisibility(View.VISIBLE);
+            fr.setVisibility(View.INVISIBLE);
+        }
+        mExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-
+                 MainActivity.super.finish();
+                 System.exit(0);
+                //finish();
+            }
+        });
 
 
 
@@ -123,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
         mChangeLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
                 Intent intent = new Intent(MainActivity.this, Main2Activity.class);
                 startActivity(intent);
             }
@@ -131,6 +158,12 @@ public class MainActivity extends AppCompatActivity {
        // arr.remove(0);
         //arr.put(0,0);
 
+        mRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
 
 
         mImageBtn.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
                     ffill(present,arr.get(present),4);
 
                 }
-
+                test();
                 mTextView.setText(""+nomoves);
 
             }
@@ -256,6 +289,13 @@ public class MainActivity extends AppCompatActivity {
                     return false;
             }
         }
+
+        fr.setVisibility(View.VISIBLE);
+        trans =mananger.beginTransaction();
+        trans.replace(R.id.fragment_container,frag);
+        trans.commit();
+        mRefresh.setVisibility(View.INVISIBLE);
+
         return true;
     }
 
@@ -374,4 +414,30 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    void play(){
+        flag = true;
+        fr.setVisibility(View.INVISIBLE);
+        mChangeLevel.setVisibility(View.VISIBLE);
+        mRefresh.setVisibility(View.VISIBLE);
+        mExit.setVisibility(View.VISIBLE);
+    }
+
+    void removerules(){
+        trans = mananger.beginTransaction();
+        trans.remove(frag);
+        trans.commit();
+    }
+
+    void refresh(){
+        gridview = (GridView) findViewById(R.id.gridView);
+        gridview.setAdapter(new ImageAdapter1(this));
+        trans = mananger.beginTransaction();
+        trans.remove( frag);
+        trans.commit();
+        fr.setVisibility(View.INVISIBLE);
+        mRefresh.setVisibility(View.VISIBLE);
+       // mChangeLevel.setVisibility(View.VISIBLE);
+    }
+
 }

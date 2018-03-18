@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
-    tools:context="com.example.anchalgarg.somegame.MainActivity">
+    tools:context="com.ex.anchalgarg.somegame.MainActivity">
 
     <GridView
         android:id="@+id/gridView"
@@ -18,7 +18,11 @@
         android:layout_alignStart="@+id/button"
         android:layout_below="@+id/textView"
         android:background="@android:color/background_dark"
-        android:numColumns="7" />
+        android:numColumns="7" >
+
+
+
+    </GridView>
 
     <TextView
         android:id="@+id/textView"
@@ -59,72 +63,73 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="change level"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/movesLabel"
-        android:layout_toStartOf="@+id/movesLabel"
-        android:text="change level" />
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/Exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exit"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/imageView12"
+        android:layout_alignEnd="@+id/imageView12" />
 
     <ImageButton
         android:id="@+id/imageView6"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/gridView"
-        android:adjustViewBounds="true"
+        android:layout_width="60sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="10sp"
+        android:layout_marginTop="400sp"
         android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
         app:srcCompat="@drawable/blue_a" />
 
     <ImageButton
         android:id="@+id/imageView8"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_above="@+id/button"
-        android:layout_below="@+id/gridView"
-        android:layout_toEndOf="@+id/imageView6"
-        android:layout_toRightOf="@+id/imageView6"
+        android:layout_width="60sp"
+        android:layout_height="50sp"
+
         android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/pinkish" />
+        app:srcCompat="@drawable/oinkcircle"
+        android:layout_marginLeft="80sp"
+        android:layout_marginTop="400sp" />
 
     <ImageButton
         android:id="@+id/imageView9"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_below="@+id/gridView"
-        android:layout_toRightOf="@+id/imageView8"
+        android:layout_width="60sp"
+        android:layout_height="50sp"
+
         android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/greencircle" />
+        app:srcCompat="@drawable/greencircle"
+        android:layout_marginLeft="150sp"
+        android:layout_marginTop="400sp"/>
 
     <ImageButton
         android:id="@+id/imageView10"
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_below="@+id/gridView"
-        android:layout_toRightOf="@+id/imageView9"
+        android:layout_width="60sp"
+        android:layout_height="50sp"
         android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
-        app:srcCompat="@drawable/yellowcicle" />
+        app:srcCompat="@drawable/yellowcicle"
+        android:layout_marginLeft="220sp"
+        android:layout_marginTop="400sp" />
 
     <ImageButton
         android:id="@+id/imageView12"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_below="@+id/gridView"
-        android:layout_toRightOf="@+id/imageView10"
+        android:layout_width="60sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="290sp"
+        android:layout_marginTop="400sp"
         android:background="@android:color/transparent"
-        android:padding="10dp"
-        android:scaleType="centerCrop"
         app:srcCompat="@drawable/red_circle" />
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+    </FrameLayout>
 </RelativeLayout>

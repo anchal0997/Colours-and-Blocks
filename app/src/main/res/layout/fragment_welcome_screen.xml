@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.anchalgarg.somegame.welcomeScreen">
+    android:background="@drawable/app_icon"
+    tools:context="com.ex.anchalgarg.somegame.welcomeScreen">
 
     <!-- TODO: Update blank fragment layout -->
 

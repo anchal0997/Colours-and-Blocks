@@ -1,4 +1,4 @@
-package com.example.anchalgarg.somegame;
+package com.ex.anchalgarg.somegame;
 
 import org.junit.Test;
 

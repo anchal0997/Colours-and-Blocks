@@ -1,8 +1,5 @@
-package com.example.anchalgarg.somegame;
+package com.ex.anchalgarg.somegame;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,6 +13,7 @@ public class welcomeScreen extends Fragment {
 
     Button start;
     Button Exit;
+    MainActivity inst;
     //public static int x=0;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,19 +26,27 @@ public class welcomeScreen extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_welcome_screen, container, false);
-        start = (Button) getView().findViewById(R.id.Start);
-        Exit = (Button)getView().findViewById(R.id.Exit);
+        start = (Button)rootView.findViewById(R.id.Start);
+        Exit = (Button)rootView.findViewById(R.id.Exit);
         Log.d("ufeh","____---____---");
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.x=1;
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
+               // MainActivity.x=1;
+               // Intent intent = new Intent(getActivity(), MainActivity.class);
+               // startActivity(intent);
+                inst.play();
+                //inst.onCreate(null);
             }
         });
 
+        Exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.exit(0);
+            }
+        });
 
 
         return rootView;

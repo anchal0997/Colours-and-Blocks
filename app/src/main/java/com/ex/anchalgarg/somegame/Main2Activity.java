@@ -1,6 +1,9 @@
-package com.example.anchalgarg.somegame;
+package com.ex.anchalgarg.somegame;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -9,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -21,7 +26,7 @@ import java.util.Random;
 
 public class Main2Activity extends AppCompatActivity {
     HashMap<Integer,Integer> arr=new HashMap<>();
-    int present=-1;
+    int present=0;
     int nomoves=0;
     // int first =0;
     int firstw;
@@ -30,9 +35,13 @@ public class Main2Activity extends AppCompatActivity {
     int visited[]=new int[49];
     //int parent[]=new int[26];
     private Integer[] mThumbIds = {
-            R.drawable.bluesquare,R.drawable.green_sq,R.drawable.yellowsquare,R.drawable.pink,R.drawable.redsquare
+            R.drawable.bluesquare,R.drawable.green_sq,R.drawable.yellowsquare,R.drawable.pink_sq,R.drawable.redsquare
     };
-
+    WinningMessage frag = new WinningMessage();
+    FrameLayout fr ;
+    FragmentManager mananger;
+    FragmentTransaction trans;
+    Button mRefresh,mExit,mChangelevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +57,13 @@ public class Main2Activity extends AppCompatActivity {
         ImageButton mImageBtn3=(ImageButton)findViewById(R.id.imageView10);
         ImageButton mImageBtn4=(ImageButton)findViewById(R.id.imageView12);
         gridview = (GridView) findViewById(R.id.gridView);
-
+        mananger=getSupportFragmentManager();
+        frag.p2 = Main2Activity.this;
+        fr = (FrameLayout) findViewById(R.id.fragment_container);
         //mRelLayout.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
+        mRefresh = (Button)findViewById(R.id.button);
+        mExit =(Button)findViewById(R.id.Exit);
+        mChangelevel = (Button)findViewById(R.id.button2);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
@@ -96,7 +109,30 @@ public class Main2Activity extends AppCompatActivity {
         // arr.remove(0);
         //arr.put(0,0);
 
+        mRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                refresh();
+            }
+        });
 
+        mChangelevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                MainActivity.flag2=true;
+                Intent intent = new Intent(Main2Activity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Main2Activity.super.finish();
+                System.exit(0);
+            }
+        });
 
         mImageBtn.setOnClickListener(new View.OnClickListener() {
 
@@ -191,7 +227,7 @@ public class Main2Activity extends AppCompatActivity {
                     ffill(present,arr.get(present),4);
 
                 }
-
+                test();
                 mTextView.setText(""+nomoves);
 
             }
@@ -216,10 +252,16 @@ public class Main2Activity extends AppCompatActivity {
         int value=arr.get(0);
         for(i=0;i<7;i++) {
             for (j = 0; j < 7; j++) {
-                if (arr.get(i *7 + j) != value)
+                if (arr.get(i * 7 + j) != value)
                     return false;
             }
         }
+
+        fr.setVisibility(View.VISIBLE);
+        trans =mananger.beginTransaction();
+        trans.add(R.id.fragment_container,frag);
+        trans.commit();
+        mRefresh.setVisibility(View.INVISIBLE);
         return true;
     }
 
@@ -337,5 +379,15 @@ public class Main2Activity extends AppCompatActivity {
 
 
 
+    }
+
+    void refresh(){
+        gridview = (GridView) findViewById(R.id.gridView);
+        gridview.setAdapter(new Main2Activity.ImageAdapter1(this));
+        fr.setVisibility(View.INVISIBLE);
+        trans = mananger.beginTransaction();
+        trans.remove(frag);
+        trans.commit();
+        mRefresh.setVisibility(View.VISIBLE);
     }
 }
